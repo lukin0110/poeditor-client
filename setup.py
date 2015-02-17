@@ -5,6 +5,7 @@ setup(
     version="0.0.1",
     url='https://github.com/lukin0110/poeditor-client',
     license='LICENSE.txt',
+    description='Download translation files from POEditor',
     scripts=[
         'scripts/poeditor_admin.py'
     ],
