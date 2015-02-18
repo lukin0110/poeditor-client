@@ -1,5 +1,7 @@
 #!/usr/bin/python
 # -*- encoding: utf-8 -*-
+# POEditor Client: https://github.com/sporteasy/python-poeditor/
+# Fork: https://github.com/lukin0110/python-poeditor
 import os
 
 from ConfigParser import SafeConfigParser, ConfigParser, DEFAULTSECT
@@ -21,6 +23,7 @@ def download(config):
 
     for s in sections:
         if s.startswith("project."):
+            print "\nProject: ", s
             project_id = config.get(s, "project_id")
             file_type = config.get(s, "type")
             options = config.options(s)
@@ -39,5 +42,5 @@ def download(config):
 if __name__ == "__main__":
     config = load_config()
     download(config)
-    print "Sections: ", config.sections()
-    print "Done!"
+    #print "\nSections: ", config.sections()
+    print "\nDone!"
