@@ -44,8 +44,8 @@ Parameter       | Description
 --------------- | ----------------------------------------------------------------------
 apikey          | go to [My Account > API Access](https://poeditor.com/account/api)
 project_id      | id of the translation project, can be found under *API Access* as well
-type            | type of translation file that you want to download, cfr [export](https://poeditor.com/api_reference/#export)
-trans.<locale>  | which language that you want to download and where to store it
+type            | file format  (po, pot, mo, xls, apple_strings, xliff, android_strings, resx, resw, properties, json) , cfr [export](https://poeditor.com/api_reference/#export)
+trans.*locale*  | which language that you want to download and where to store it
 
 ## Upload to PyPi
 
