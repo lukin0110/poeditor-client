@@ -15,7 +15,7 @@ Install pip:
 sudo easy_install pip
 ```
 
-# Usage
+## Usage
 Run the following command:
 ```
 poeditor_admin.py
@@ -39,6 +39,13 @@ trans.nl = App/src/main/res/values-nl/strings.xml
 trans.fr = App/src/main/res/values-fr/strings.xml
 trans.pl = App/src/poland/res/values-pl/strings.xml
 ```
+
+Parameter       | Description
+--------------- | ----------------------------------------------------------------------
+apikey          | go to [My Account > API Access](https://poeditor.com/account/api)
+project_id      | id of the translation project, can be found under *API Access* as well
+type            | type of translation file that you want to download, cfr [export](https://poeditor.com/api_reference/#export)
+trans.<locale>  | which language that you want to download and where to store it
 
 ## Upload to PyPi
 
