@@ -7,7 +7,7 @@ setup(
     license='LICENSE.txt',
     description='Download translation files from POEditor',
     scripts=[
-        'scripts/poeditor_admin.py'
+        'scripts/poeditor-client'
     ],
     author='Maarten Huijsmans',
     author_email='maarten@lukin.be',
