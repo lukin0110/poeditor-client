@@ -1,6 +1,5 @@
 import argparse
 import os
-import sys
 
 from ConfigParser import SafeConfigParser
 from poeditor import POEditorAPI, POEditorException
