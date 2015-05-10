@@ -1,13 +1,15 @@
-# poeditor-client
+poeditor-client
+===============
 A command line tool which downloads translations from [POEditor](https://poeditor.com) based on a configuration file.
 
-## Install
+1. Install
+----------
 Install the client on your system. It works on Linux, Mac OS X and Windows. You need to have
 [python](https://python.org) and [pip](https://pypi.python.org/pypi/pip) installed.
 
 Install from PyPi:
 ```
-sudo pip install poeditor-client==0.0.2
+sudo pip install poeditor-client==0.0.3
 ```
 
 Install pip:
@@ -15,25 +17,19 @@ Install pip:
 sudo easy_install pip
 ```
 
-## Usage
-Run the following command:
-```
-poeditor_admin.py
-```
-This will look for a configuration file named `.translations` in the directory where you're executing the command.
-
-
-## Configuration
-Create a file `.translations` in the root of your project.
+2. Configuration
+----------------
+Create a file `.poeditor` in the root of your project.
 
 Example:
 ```
 [main]
-apikey = 54df54gd5f4gs5df4gsdf54g5sdf4g5dfs4g5dsf4gdsfg
+apikey = 54df54gd5f4gs5sdfsdfsdfasdfsdfasdfasdf
 
 [project.vikingapp_be]
 project_id = 4200
 type = android_strings
+terms = App/src/main/res/values/strings.xml
 trans.en = App/src/main/res/values/strings.xml
 trans.nl = App/src/main/res/values-nl/strings.xml
 trans.fr = App/src/main/res/values-fr/strings.xml
@@ -47,16 +43,41 @@ project_id      | id of the translation project, can be found under *API Access*
 type            | file format  (po, pot, mo, xls, apple_strings, xliff, android_strings, resx, resw, properties, json) , cfr [export](https://poeditor.com/api_reference/#export)
 trans.*locale*  | which language that you want to download and where to store it
 
-## Upload to PyPi
+3. Usage
+--------
+After your have created your translation project on POEditor you can can initialize your project based on your
+configuration. The cmd will load the `.poeditor` file in the directory where you're executing the command.
 
-Register:
+Initialize:
 ```
-python setup.py register -r pypi
+poeditor init
 ```
-
-Upload:
-```
-python setup.py sdist upload -r pypi
-```
+This will create terms and add languages to your project.
 
 
+Download translations:
+```
+poeditor pull
+```
+
+Add terms:
+```
+poeditor pushTerms
+```
+
+License
+=======
+
+    Copyright 2015 Maarten Huijsmans
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
