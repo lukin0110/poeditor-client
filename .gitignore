@@ -55,3 +55,12 @@ target/
 
 # Editor
 .idea/
+
+# trans file
+vikingapp/*
+.poeditor
+examples/.poeditor0
+
+# Test script
+test.py
+
