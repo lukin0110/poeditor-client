@@ -1,5 +1,6 @@
 from setuptools import setup, find_packages
 
+
 long_description = """
 The POEditor Client is a command line tool that enables you to easily manage your translation files within a project.
 """
@@ -10,9 +11,11 @@ POEditor API Client: https://github.com/sporteasy/python-poeditor/
 Fork: https://github.com/lukin0110/python-poeditor
 '''
 
+import poeditor_client
+
 setup(
     name="poeditor_client",
-    version="0.0.3",
+    version=poeditor_client.__version__,
     url='https://github.com/lukin0110/poeditor-client',
     license='LICENSE.txt',
     description='The POEditor Client',
