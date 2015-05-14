@@ -33,7 +33,6 @@ terms = App/src/main/res/values/strings.xml
 trans.en = App/src/main/res/values/strings.xml
 trans.nl = App/src/main/res/values-nl/strings.xml
 trans.fr = App/src/main/res/values-fr/strings.xml
-trans.pl = App/src/poland/res/values-pl/strings.xml
 ```
 
 Parameter       | Description
@@ -60,9 +59,19 @@ Download translations:
 poeditor pull
 ```
 
+Upload languages:
+```
+poeditor push
+```
+
 Add terms:
 ```
 poeditor pushTerms
+```
+
+Check project status:
+```
+poeditor status
 ```
 
 License
