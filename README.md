@@ -1,5 +1,7 @@
 poeditor-client
 ===============
+[![Build Status](https://travis-ci.org/lukin0110/poeditor-client.svg)](https://travis-ci.org/lukin0110/poeditor-client)
+
 A command line tool which downloads translations from [POEditor](https://poeditor.com) based on a configuration file.
 
 1. Install
