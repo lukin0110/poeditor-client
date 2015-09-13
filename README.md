@@ -11,7 +11,7 @@ Install the client on your system. It works on Linux, Mac OS X and Windows. You 
 
 Install from PyPi:
 ```
-sudo pip install poeditor-client==0.0.3
+sudo pip install poeditor-client==0.0.4
 ```
 
 Install pip:
