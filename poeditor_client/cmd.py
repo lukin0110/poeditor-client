@@ -15,7 +15,7 @@ def _load_config(path):
         print("Config file '{}' doesn't exist".format(path))
         return None
 
-    parser = SafeConfigParser()
+    parser = SafeConfigParser(os.environ)
     parser.read(path)
     return parser
 
