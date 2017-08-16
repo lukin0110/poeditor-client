@@ -15,7 +15,7 @@ def _load_config(path):
         print("Config file '{}' doesn't exist".format(path))
         return None
 
-    parser = SafeConfigParser()
+    parser = SafeConfigParser(os.environ)
     parser.read(path)
     return parser
 
@@ -113,7 +113,7 @@ def pull(config, languages=None):
                         os.makedirs(parent_dir)
 
                     print("Language: {}".format(language))
-                    client.export(project_id, language_code=language, file_type=file_type, local_file=export_path)
+                    client.export(project_id, language_code=language, file_type=file_type, local_file=export_path, filters="translated")
 
 
 def push(config, languages=None, overwrite=False, sync_terms=False):
