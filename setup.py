@@ -29,10 +29,7 @@ setup(
     zip_safe=False,
     long_description=long_description,
     install_requires=[
-       "poeditor==1.0.3",
-    ],
-    dependency_links=[
-       "https://github.com/lukin0110/python-poeditor/tarball/master#egg=poeditor-1.0.3",
+       "poeditor==1.0.4",
     ],
     classifiers=[
         'Development Status :: 5 - Production/Stable',
