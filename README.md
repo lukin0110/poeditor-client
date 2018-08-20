@@ -23,10 +23,16 @@ sudo easy_install pip
 ----------------
 Create a file `.poeditor` in the root of your project.
 
-Example:
+
+**Note:** For security reasons it's recommended that you use the environment variables to store you API key:
+```
+export POEDITOR_TOKEN=54df54gd5f4gs5sdfsdfsdfasdfsdfasdfasdf
+```
+
+**Example:**
 ```
 [main]
-apikey = 54df54gd5f4gs5sdfsdfsdfasdfsdfasdfasdf
+apikey = 54df54gd5f4gs5sdfsdfsdfasdfsdfasdfasdf; **Note:** Use the POEDITOR_TOKEN instead
 
 [project.vikingapp_be]
 project_id = 4200
@@ -36,6 +42,7 @@ trans.en = App/src/main/res/values/strings.xml
 trans.nl = App/src/main/res/values-nl/strings.xml
 trans.fr = App/src/main/res/values-fr/strings.xml
 ```
+
 
 Parameter       | Description
 --------------- | ----------------------------------------------------------------------

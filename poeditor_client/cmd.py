@@ -1,10 +1,21 @@
 import argparse
 import os
 
-from ConfigParser import SafeConfigParser
+from ConfigParser import NoOptionError, NoSectionError, SafeConfigParser
 from poeditor import POEditorAPI, POEditorException
 
 FILENAME = ".poeditor"
+
+
+def _get_api_token(config):
+    """
+    Get the API key either from the config file or the environment variables.
+    """
+    assert config
+    try:
+        return config.get("main", "apikey")
+    except (NoOptionError, NoSectionError):
+        return os.environ.get('POEDITOR_TOKEN')
 
 
 def _load_config(path):
@@ -51,7 +62,7 @@ def init(config):
     Initializes the project on POEditor based on the configuration file.
     """
     assert config
-    client = POEditorAPI(api_token=config.get("main", "apikey"))
+    client = POEditorAPI(api_token=_get_api_token(config))
     sections = config.sections()
 
     for s in sections:
@@ -91,7 +102,7 @@ def pull(config, languages=None):
     Pulls translations from the POEditor API.
     """
     assert config
-    client = POEditorAPI(api_token=config.get("main", "apikey"))
+    client = POEditorAPI(api_token=_get_api_token(config))
     sections = config.sections()
 
     for s in sections:
@@ -121,7 +132,7 @@ def push(config, languages=None, overwrite=False, sync_terms=False):
     Push terms and languages
     """
     assert config
-    client = POEditorAPI(api_token=config.get("main", "apikey"))
+    client = POEditorAPI(api_token=_get_api_token(config))
     sections = config.sections()
 
     for section in sections:
@@ -159,7 +170,7 @@ def pushTerms(config):
     Pushes new terms to POEditor
     """
     assert config
-    client = POEditorAPI(api_token=config.get("main", "apikey"))
+    client = POEditorAPI(api_token=_get_api_token(config))
     sections = config.sections()
 
     for s in sections:
@@ -178,7 +189,7 @@ def status(config):
     files.
     """
     assert config
-    client = POEditorAPI(api_token=config.get("main", "apikey"))
+    client = POEditorAPI(api_token=_get_api_token(config))
     sections = config.sections()
 
     print("Api key: {}".format(config.get("main", "apikey")))
