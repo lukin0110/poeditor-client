@@ -1,5 +1,6 @@
 import argparse
 import os
+from time import sleep
 
 from ConfigParser import NoOptionError, NoSectionError, SafeConfigParser
 from poeditor import POEditorAPI, POEditorException
@@ -163,9 +164,10 @@ def push(config, languages=None, overwrite=False, sync_terms=False):
                     overwrite=overwrite,
                     sync_terms=sync_terms
                 )
+                sleep(10.5)  # Avoids API rate limit
 
 
-def pushTerms(config):
+def pushTerms(config, sync_terms=False):
     """
     Pushes new terms to POEditor
     """
@@ -179,7 +181,8 @@ def pushTerms(config):
             if terms:
                 project_id = config.get(s, "project_id")
                 print(" - Project: {0}, {1}\n".format(s, terms))
-                client.update_terms(project_id, terms)
+                client.update_terms(project_id, terms, sync_terms=sync_terms)
+                sleep(10.5)  # Avoids API rate limit
 
 
 def status(config):
@@ -246,7 +249,7 @@ def main():
 
     elif "pushTerms" == args.command:
         print("Push terms")
-        pushTerms(config)
+        pushTerms(config, sync_terms=args.sync_terms)
 
     elif "status" == args.command:
         status(config)
