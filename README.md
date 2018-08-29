@@ -23,10 +23,17 @@ sudo easy_install pip
 ----------------
 Create a file `.poeditor` in the root of your project.
 
-Example:
+
+**Note:** For security reasons it's recommended that you use the `POEDITOR_TOKEN` 
+environment variables to store you API key:
+```
+export POEDITOR_TOKEN=54df54gd5f4gs5sdfsdfsdfasdfsdfasdfasdf
+```
+
+**Example:**
 ```
 [main]
-apikey = 54df54gd5f4gs5sdfsdfsdfasdfsdfasdfasdf
+apikey = 54df54gd5f4gs5sdfsdfsdfasdfsdfasdfasdf; **Note:** Use the POEDITOR_TOKEN instead
 
 [project.vikingapp_be]
 project_id = 4200
@@ -35,14 +42,23 @@ terms = App/src/main/res/values/strings.xml
 trans.en = App/src/main/res/values/strings.xml
 trans.nl = App/src/main/res/values-nl/strings.xml
 trans.fr = App/src/main/res/values-fr/strings.xml
+
+[project.cat_pictures]
+project_id = 4201
+type = json
+terms = App/src/main/res/values/strings.json
+trans.en = App/src/main/res/values/strings.json
+trans.nl = App/src/main/res/values-nl/strings.json
+trans.fr = App/src/main/res/values-fr/strings.json
 ```
 
-Parameter       | Description
---------------- | ----------------------------------------------------------------------
-apikey          | go to [My Account > API Access](https://poeditor.com/account/api)
-project_id      | id of the translation project, can be found under *API Access* as well
-type            | file format  (po, pot, mo, xls, apple_strings, xliff, android_strings, resx, resw, properties, json) , cfr [export](https://poeditor.com/api_reference/#export)
-trans.*locale*  | which language that you want to download and where to store it
+
+Parameter                                         | Description
+------------------------------------------------- | ----------------------------------------------------------------------
+apikey (or `POEDITOR_TOKEN` environment variable) | go to [My Account > API Access](https://poeditor.com/account/api)
+project_id                                        | id of the translation project, can be found under *API Access* as well
+type                                              | file format  (po, pot, mo, xls, apple_strings, xliff, android_strings, resx, resw, properties, json) , cfr [export](https://poeditor.com/api_reference/#export)
+trans.*locale*                                    | which language that you want to download and where to store it
 
 3. Usage
 --------

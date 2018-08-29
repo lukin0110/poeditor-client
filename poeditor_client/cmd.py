@@ -1,10 +1,22 @@
 import argparse
 import os
+from time import sleep
 
-from ConfigParser import SafeConfigParser
+from ConfigParser import NoOptionError, NoSectionError, SafeConfigParser
 from poeditor import POEditorAPI, POEditorException
 
 FILENAME = ".poeditor"
+
+
+def _get_api_token(config):
+    """
+    Get the API key either from the config file or the environment variables.
+    """
+    assert config
+    try:
+        return config.get("main", "apikey")
+    except (NoOptionError, NoSectionError):
+        return os.environ.get('POEDITOR_TOKEN')
 
 
 def _load_config(path):
@@ -51,7 +63,7 @@ def init(config):
     Initializes the project on POEditor based on the configuration file.
     """
     assert config
-    client = POEditorAPI(api_token=config.get("main", "apikey"))
+    client = POEditorAPI(api_token=_get_api_token(config))
     sections = config.sections()
 
     for s in sections:
@@ -91,7 +103,7 @@ def pull(config, languages=None):
     Pulls translations from the POEditor API.
     """
     assert config
-    client = POEditorAPI(api_token=config.get("main", "apikey"))
+    client = POEditorAPI(api_token=_get_api_token(config))
     sections = config.sections()
 
     for s in sections:
@@ -121,7 +133,7 @@ def push(config, languages=None, overwrite=False, sync_terms=False):
     Push terms and languages
     """
     assert config
-    client = POEditorAPI(api_token=config.get("main", "apikey"))
+    client = POEditorAPI(api_token=_get_api_token(config))
     sections = config.sections()
 
     for section in sections:
@@ -152,14 +164,15 @@ def push(config, languages=None, overwrite=False, sync_terms=False):
                     overwrite=overwrite,
                     sync_terms=sync_terms
                 )
+                sleep(10.5)  # Avoids API rate limit
 
 
-def pushTerms(config):
+def pushTerms(config, sync_terms=False):
     """
     Pushes new terms to POEditor
     """
     assert config
-    client = POEditorAPI(api_token=config.get("main", "apikey"))
+    client = POEditorAPI(api_token=_get_api_token(config))
     sections = config.sections()
 
     for s in sections:
@@ -168,7 +181,8 @@ def pushTerms(config):
             if terms:
                 project_id = config.get(s, "project_id")
                 print(" - Project: {0}, {1}\n".format(s, terms))
-                client.update_terms(project_id, terms)
+                client.update_terms(project_id, terms, sync_terms=sync_terms)
+                sleep(10.5)  # Avoids API rate limit
 
 
 def status(config):
@@ -178,7 +192,7 @@ def status(config):
     files.
     """
     assert config
-    client = POEditorAPI(api_token=config.get("main", "apikey"))
+    client = POEditorAPI(api_token=_get_api_token(config))
     sections = config.sections()
 
     print("Api key: {}".format(config.get("main", "apikey")))
@@ -235,7 +249,7 @@ def main():
 
     elif "pushTerms" == args.command:
         print("Push terms")
-        pushTerms(config)
+        pushTerms(config, sync_terms=args.sync_terms)
 
     elif "status" == args.command:
         status(config)
