@@ -164,7 +164,8 @@ def push(config, languages=None, overwrite=False, sync_terms=False):
                     overwrite=overwrite,
                     sync_terms=sync_terms
                 )
-                sleep(10.5)  # Avoids API rate limit
+                # Avoids API rate limit: https://poeditor.com/docs/error_codes#code-4048
+                sleep(32)
 
 
 def pushTerms(config, sync_terms=False):
@@ -182,7 +183,8 @@ def pushTerms(config, sync_terms=False):
                 project_id = config.get(s, "project_id")
                 print(" - Project: {0}, {1}\n".format(s, terms))
                 client.update_terms(project_id, terms, sync_terms=sync_terms)
-                sleep(10.5)  # Avoids API rate limit
+                # Avoids API rate limit: https://poeditor.com/docs/error_codes#code-4048
+                sleep(32)
 
 
 def status(config):
