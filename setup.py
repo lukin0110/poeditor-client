@@ -5,12 +5,6 @@ long_description = """
 The POEditor Client is a command line tool that enables you to easily manage your translation files within a project.
 """
 
-'''
-Depends on a fork of the python-poeditor library:
-POEditor API Client: https://github.com/sporteasy/python-poeditor/
-Fork: https://github.com/lukin0110/python-poeditor
-'''
-
 import poeditor_client
 
 setup(
@@ -28,11 +22,9 @@ setup(
     include_package_data=True,
     zip_safe=False,
     long_description=long_description,
+    python_requires='>3.6.0',
     install_requires=[
-       "poeditor==1.0.3",
-    ],
-    dependency_links=[
-       "https://github.com/lukin0110/python-poeditor/tarball/master#egg=poeditor-1.0.3",
+       "poeditor==1.1.0",
     ],
     classifiers=[
         'Development Status :: 5 - Production/Stable',

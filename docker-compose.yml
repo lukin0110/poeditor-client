@@ -1,0 +1,11 @@
+version: '3'
+
+services:
+  app:
+    build:
+      context: ./
+      dockerfile: ./deployment/Dockerfile
+    volumes:
+      - ./:/poeditor-client/
+#    env_file:
+#      - .env.local

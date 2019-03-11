@@ -2,8 +2,11 @@ import argparse
 import os
 from time import sleep
 
-from ConfigParser import NoOptionError, NoSectionError, SafeConfigParser
-from poeditor import POEditorAPI, POEditorException
+from configparser import NoOptionError, NoSectionError, ConfigParser
+try:
+    from poeditor.client import POEditorAPI, POEditorException
+except:
+    from poeditor import POEditorAPI, POEditorException
 
 FILENAME = ".poeditor"
 
@@ -27,7 +30,7 @@ def _load_config(path):
         print("Config file '{}' doesn't exist".format(path))
         return None
 
-    parser = SafeConfigParser()
+    parser = ConfigParser()
     parser.read(path)
     return parser
 
@@ -36,7 +39,7 @@ def generate():
     """
     Generates an example configuration file.
     """
-    parser = SafeConfigParser()
+    parser = ConfigParser()
     parser.add_section('main')
     parser.set('main', 'apikey', 'your api key')
 
