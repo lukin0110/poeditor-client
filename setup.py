@@ -22,7 +22,7 @@ setup(
     include_package_data=True,
     zip_safe=False,
     long_description=long_description,
-    python_requires='>3.6.0',
+    python_requires='>3.5.0',
     install_requires=[
        "poeditor==1.1.0",
     ],
