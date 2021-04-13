@@ -181,7 +181,7 @@ def pushTerms(config, sync_terms=False):
 
     for s in sections:
         if s.startswith("project."):
-            terms = config.get(s, 'terms', None) if config.has_option(s, 'terms') else None
+            terms = config.get(s, 'terms') if config.has_option(s, 'terms') else None
             if terms:
                 project_id = config.get(s, "project_id")
                 print(" - Project: {0}, {1}\n".format(s, terms))
@@ -206,7 +206,7 @@ def status(config):
         if s.startswith("project."):
             project_id = config.get(s, "project_id")
             details = client.view_project_details(project_id)
-            terms = config.get(s, 'terms', None) if config.has_option(s, 'terms') else None
+            terms = config.get(s, 'terms') if config.has_option(s, 'terms') else None
             options = config.options(s)
 
             print("\nProject: {0} ({1})".format(details['name'], details['id']))
