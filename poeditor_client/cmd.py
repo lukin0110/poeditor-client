@@ -197,10 +197,11 @@ def status(config):
     files.
     """
     assert config
-    client = POEditorAPI(api_token=_get_api_token(config))
+    api_token = _get_api_token(config)
+    client = POEditorAPI(api_token=api_token)
     sections = config.sections()
 
-    print("Api key: {}".format(config.get("main", "apikey")))
+    print("Api key: {}".format(api_token))
 
     for s in sections:
         if s.startswith("project."):
