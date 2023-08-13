@@ -24,7 +24,7 @@ setup(
     long_description=long_description,
     python_requires='>3.5.0',
     install_requires=[
-       "poeditor==1.1.0",
+       "poeditor==1.1.3",
     ],
     classifiers=[
         'Development Status :: 5 - Production/Stable',
